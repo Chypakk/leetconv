@@ -23,3 +23,8 @@ go.work.sum
 
 # env file
 .env
+
+# testing program
+/test_program
+.vscode/
+!.vscode/settings.json
