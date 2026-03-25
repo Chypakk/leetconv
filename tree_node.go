@@ -41,7 +41,7 @@ func ParseTreeNode(s string) (*TreeNode, error) {
 	queue := []*TreeNode{root}
 	i := 1
 
-	for i < len(parts) && len(queue) > 0{
+	for i < len(parts) && len(queue) > 0 {
 		current := queue[0]
 		queue = queue[1:]
 
@@ -58,19 +58,20 @@ func ParseTreeNode(s string) (*TreeNode, error) {
 		}
 		i++
 
-		if parts[i] != "null" {
-			val, err := strconv.Atoi(parts[i])
+		if i < len(parts) {
+			if parts[i] != "null" {
+				val, err := strconv.Atoi(parts[i])
 
-			if err != nil {
-				return nil, fmt.Errorf("invalid value: got %q", parts[i])
+				if err != nil {
+					return nil, fmt.Errorf("invalid value: got %q", parts[i])
+				}
+
+				rightNode := &TreeNode{Val: val}
+				current.Right = rightNode
+				queue = append(queue, rightNode)
 			}
-
-			rightNode := &TreeNode{Val: val}
-			current.Right = rightNode
-			queue = append(queue, rightNode)
+			i++
 		}
-		i++
-
 
 	}
 
